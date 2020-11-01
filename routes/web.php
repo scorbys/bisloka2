@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    // $bis['title'] = "Login ";
+    $title = 'Login';
+    return view('auth.login', ['title' => $title]);
+})->middleware('guest');
 
 Auth::routes();
 
