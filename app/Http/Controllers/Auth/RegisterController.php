@@ -73,7 +73,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $data['title'] = "Register";
-        return view('auth.register', $data);
+        $title = 'Register';
+        return view('auth.register', ['title' => $title]);
     }
 }
