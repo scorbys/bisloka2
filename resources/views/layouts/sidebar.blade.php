@@ -1,8 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <a href="{{ route('home') }}" class="brand-link">
-        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Sistem Pemesanan</span>
     </a>
 
@@ -21,7 +19,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item has-treeview menu-open">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-circle-o"></i>
+                        <i class="nav-icon fa fa-cog"></i>
                         <p>
                             MASTER
                             <i class="right fa fa-angle-left"></i>
@@ -31,14 +29,14 @@
                         <li class="nav-item">
                             <a href=" {{ route('bus.index') }} "
                                 class="nav-link {{ ($menu==1 ? 'active' : '') }}">
-                                <i class="fa fa-car nav-icon"></i>
+                                <i class="fa fa-bus nav-icon"></i>
                                 <p>Data Bus</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href=" {{ route('brand.index') }} "
                                 class="nav-link {{ ($menu==2 ? 'active' : '') }}">
-                                <i class="fa fa-database nav-icon"></i>
+                                <i class="fa fa-tags nav-icon"></i>
                                 <p>Data Brands</p>
                             </a>
                         </li>
@@ -60,7 +58,7 @@
                 </li>
                 <li class="nav-item has-treeview menu-open">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-circle-o"></i>
+                        <i class="nav-icon fa fa-cog"></i>
                         <p>
                             TRANSAKSI
                             <i class="right fa fa-angle-left"></i>
@@ -70,14 +68,14 @@
                         <li class="nav-item">
                             <a href=" {{ route('pemesanan.index') }} "
                                 class="nav-link {{ ($menu==5 ? 'active' : '') }}">
-                                <i class="fa fa-book nav-icon"></i>
+                                <i class="fa fa-hdd-o nav-icon"></i>
                                 <p>Pemesanan</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href=" {{ route('pengembalian.index') }} "
                                 class="nav-link {{ ($menu==6 ? 'active' : '') }}">
-                                <i class="fa fa-dollar nav-icon"></i>
+                                <i class="fa fa-credit-card nav-icon"></i>
                                 <p>Pengembalian</p>
                             </a>
                         </li>

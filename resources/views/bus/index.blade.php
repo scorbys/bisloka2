@@ -16,7 +16,6 @@
                         <th>Tahun</th>
                         <th>Plat No</th>
                         <th>Harga</th>
-                        <th>Tipe</th>
                         <th>Brand</th>
                         <th>Merk</th>
                     </tr>
@@ -26,10 +25,9 @@
                     <tr>
                         <td>{{ $no++}}</td>
                         <td>{{ $row['nama_kdr'] }}</td>
-                        <td>{{ $row['thn_kdr'] }}</td>
+                        <td>{{ $row['tahun_kdr'] }}</td>
                         <td>{{ $row['plat_kdr'] }}</td>
                         <td>{{ number_format($row['harga']) }}</td>
-                        <td>{{ $row['tipe_kdr'] }}</td>
                         <td>{{ $row['brand_kdr'] }}</td>
                         <td> 
                             <a href="{{ route('bus.edit',  ['bus_id' => $row["bus_id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
