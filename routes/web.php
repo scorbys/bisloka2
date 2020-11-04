@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('bus', 'BusController')->middleware('auth');
 Route::resource('brand', 'BrandController')->middleware('auth');
 Route::resource('pegawai', 'PegawaiController')->middleware('auth');
