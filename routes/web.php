@@ -22,3 +22,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::resource('bus', 'BusController')->middleware('auth');
+Route::resource('brand', 'BrandController')->middleware('auth');
+Route::resource('pegawai', 'PegawaiController')->middleware('auth');
+Route::resource('pelanggan', 'PelangganController')->middleware('auth');
+
+// Route Pemesanan
+Route::get('list-member', 'PemesananController@listMember' )->middleware('auth');
+Route::get('pemesanan', ['as' => 'pemesanan.index', 'uses' => 'PemesananController@index' ])->middleware('auth');
+Route::post('pemesanan/process', ['as' => 'pemesanan.process', 'uses' => 'PemesananController@process'])->middleware('auth');
+Route::post('create-pelanggan', ['as' => 'create-pelanggan', 'uses' => 'PemesananController@createPelanggan' ])->middleware('auth');
+Route::post('pemesanan/details', ['as' => 'pemesanan.calculate', 'uses' => 'PemesananController@calculate'])->middleware('auth');
+
+// Route Pengembalian
+Route::get('pengembalian', ['as' => 'pengembalian.index', 'uses' => 'PengembalianController@index' ])->middleware('auth');
+Route::get('pengembalian/information', ['as' => 'pengembalian.information', 'uses' => 'PengembalianController@information'])->middleware('auth');

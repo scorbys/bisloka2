@@ -53,8 +53,6 @@
                 </section>
                 @yield('content')
             </div>
-
-            @include('layouts.footer')
         @endguest
 
     </div>
