@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
@@ -28,7 +28,9 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        $data['menu'] = 2;
+        $data['title'] = "Tambah Data Bus";
+        return view('brand.create', $data);
     }
 
     /**
@@ -39,7 +41,18 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama_brand' => 'required'
+        ]);
+
+        $insert = Brand::create($request->toArray());
+        if($insert == true ){
+            $request->session()->flash('success', 'Data berhasil ditambahkan!');
+            return redirect()->route('brand.index');
+        } else {
+            $request->session()->flash('danger', 'Gagal menambahkan data!');
+            return redirect()->route('brand.index');
+        }
     }
 
     /**
@@ -61,7 +74,10 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['menu'] = 2;
+        $data['title'] = "Edit Data Bus";
+        $data['brand'] = Brand::find($id);
+        return view('brand.edit', $data);
     }
 
     /**
@@ -73,7 +89,18 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'nama_brand' => 'required|max:30',
+        ]);
+
+        $update = Brand::find($id)->update($request->toArray());
+        if($update){
+            $request->session()->flash('success', 'Data berhasil ditambahkan!');
+            return redirect()->route('brand.index');
+        } else {
+            $request->session()->flash('danger', 'Gagal menambahkan data!');
+            return redirect()->route('brand.index');
+        }
     }
 
     /**
@@ -84,6 +111,7 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $hps = Brand::destroy($id);
+        return redirect()->route('brand.index');
     }
 }

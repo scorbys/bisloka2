@@ -21,7 +21,7 @@
                     @foreach($brands as $row)
                     <tr>
                         <td>{{ $no++}}</td>
-                        <td>{{ $row['brand_kdr'] }}</td>
+                        <td>{{ $row['nama_brand'] }}</td>
                         <td> 
                             <a href="{{ route('brand.edit',  ['brand_id' => $row["brand_id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
                             <a data-id="{{$row->brand_id}}" class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></a>

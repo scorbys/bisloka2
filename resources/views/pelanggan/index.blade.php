@@ -5,7 +5,7 @@
 <section class="content">
     <div class="card card-secondary card-outline">
         <div class="card-header">
-            <h3 class="card-title"><a href="{{ route('client.create') }}" class="btn btn-primary">Add New </a> </h3>
+            <h3 class="card-title"><a href="{{ route('pelanggan.create') }}" class="btn btn-primary">Tambah Data</a> </h3>
         </div>
         <div class="card-body">
             <table class="table table-sm" id="myTable">
@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($clients as $row)
+                    @foreach($pelanggans as $row)
                     @php $create = explode(' ', $row['created_at']);  @endphp
 
                     <tr>

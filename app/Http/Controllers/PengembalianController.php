@@ -15,74 +15,109 @@ class PengembalianController extends Controller
     {
         $data['menu'] = 6;
     	$data['title'] = 'Pengembalian';
-    	$data['pengembalian'] = Pemesanan::join('pelanggan', 'pelanggan.pelanggan_id', '=', 'pemesanan.pelanggan_id')->join('buses', 'buses.bus_id', '=', 'pemesanan.bus_id')->where('status', 'process')->get();
+        $data['pengembalian'] = Pemesanan::join('pelanggans', 'pelanggans.pelanggan_id', '=', 'pemesanan.pelanggan_id')
+                ->join('buses', 'buses.bus_id', '=', 'pemesanan.bus_id')->where('status', 'process')->get();
     	$data['no'] = 1;
     	return view('pengembalian.index', $data);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan informasi pengembalian.
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function information(Request $request){
+    	$kode_bkg = $request->kode_bkg;
+    	// jika parameter kosong
+        if($kode_bkg == '')
+        {
+    		$request->session()->flash('warning', 'Pilih data sewa dibawah');
+        	return redirect()->route('pengembalian.index');
+    	} 
+
+    	$table_bkg = Pemesanan::where('kode_bkg', $kode_bkg)->first();
+    	// jika kode booking tidak ditemukan
+        if($table_bkg->count() == 0)
+        {
+    		$request->session()->flash('warning', 'Data rental tidak ditemukan!');
+        	return redirect()->route('pengembalian.index');
+    	} 
+
+    	// denda (10% per harinya)
+        if($table_bkg->tgl_balik_shr <  date('Y-m-d'))
+        {	
+    		$balik_shr = new DateTime($table_bkg->tgl_balik_shr);
+    		$balik_skrng = new DateTime(date('Y-m-d'));
+    		$selisih = $balik_shr->diff($balik_skrng);
+            for($i=1; $i<=$selisih->hari; $i++)
+            {
+    			$kondisi = ($table_bkg->price * $i.'0')/100;
+    		}
+    		$data['tepat'] = $kondisi;
+    		$data['telat'] = $selisih->hari;
+    	} else {
+    		$data['tepat'] = null;
+    		$data['telat'] = null;
+    	}
+
+    	$data['pembayaran'] = Pengembalian::where('kode_bkg',$kode_bkg)->get()->first();
+    	$data['data'] = $kode_bkg;
+    	$data['pelanggan'] = Pelanggan::find($kode_bkg->pelanggan_id);
+    	$data['bus'] = Bus::find($kode_bkg->bus_id);
+    	$data['ttl'] = $kode_bkg->harga + $data['kondisi'] - $data['pembayaran']->total;
+    	$data['title'] = 'Proses Pengembalian';
+    	$data['menu'] = 6;
+
+    	return view('pengembalian.information', $data);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Proses dalam pengembalian.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function process(Request $request)
     {
-        //
-    }
+        $validate = $request->validate
+        (
+            [
+    		'total' => 'required|min:'.$request->ttl .'|numeric',
+            'kode_bkg' => 'required',
+            ]
+        );
+        
+    	// jika total lebih besar , otomatis jadi value
+        if($request->total > $request->ttl)
+        {
+    		$request->total = $request->ttl;
+    	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    	// update table pemesanan
+        $update_pemesanan = Pemesanan::where('kode_bkg', $request->kode_bkg)
+            ->update(
+                [
+                    'tgl_balik' => date('Y-m-d'),
+                    'kondisi' => $request->kondisi,
+                    'status' => 'dibayar'
+                    ]
+                );
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    	// tambah ke table pembayaran
+        Pengembalian::create
+        (
+            [
+    		'total' => $request->amount,
+    		'tanggal' => date('Y-m-d'),
+    		'pelanggan_id' => $request->pelanggan_id,
+    		'pegawai_id' => Auth::user()->id,
+            'kode_bkg' => $request->kode_bkg,
+            ]
+        );
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    	// mengganti status ke tersedia
+    	$bus = Bus::find($request->bus_id);
+        $bus->tersedia = '1';
+        $bus->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $request->session()->flash('success', 'Proses pengembalian berhasil!');
+        return redirect()->route('pengembalian.index');
     }
 }

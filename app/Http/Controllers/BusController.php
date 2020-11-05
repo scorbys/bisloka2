@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models;
 use DB;
 
 class BusController extends Controller
@@ -31,7 +32,10 @@ class BusController extends Controller
      */
     public function create()
     {
-        //
+        $data['title'] = "Tambah Data Bus";
+        $data['menu'] = 1;
+        $data['brands'] = Brand::all();
+        return view('bus.create', $data);
     }
 
     /**
@@ -42,7 +46,16 @@ class BusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->
+        validate([
+            'nama_kdr' => 'required',
+            'tahun_kdr' => 'required|numeric',
+            'plat_kdr' => 'required|max:10',
+            'harga' => 'required|numeric',
+            'brand_id' => 'required'
+        ]);
+        $insert = Bus::create($request->toArray());
+        return redirect()->route('bus.index');
     }
 
     /**
@@ -64,7 +77,11 @@ class BusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['title'] = "Edit Bus";
+        $data['menu'] = 1;
+        $data['bus'] = Bus::find($id);
+        $data['brands'] = Brand::all();
+        return view('bus.edit', $data);
     }
 
     /**
@@ -76,7 +93,16 @@ class BusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->
+        validate([
+            'nama_kdr' => 'required',
+            'tahun_kdr' => 'required|numeric',
+            'plat_kdr' => 'required|max:10',
+            'harga' => 'required|numeric',
+            'brand_id' => 'required'
+        ]);
+        $update = Bus::find($id)->update($request->toArray());
+        return redirect()->route('bus.index');
     }
 
     /**
@@ -87,6 +113,7 @@ class BusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bus::destroy($id);
+        return redirect()->route('bus.index');
     }
 }

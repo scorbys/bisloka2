@@ -20,7 +20,7 @@ class CreateBusesTable extends Migration
             $table->string('plat_kdr', 12);
             $table->integer('harga');
             $table->integer('brand_id');
-            $table->enum('available', ['1', '0'])->default('1');
+            $table->enum('tersedia', ['1', '0'])->default('1');
             $table->timestamps();
         });
     }

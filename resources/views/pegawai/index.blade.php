@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($employees as $row)
+                    @foreach($pegawai as $row)
                     @php $create = explode(' ', $row['created_at']);  @endphp
 
                     <tr>
