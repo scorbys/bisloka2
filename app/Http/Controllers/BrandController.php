@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -15,7 +16,7 @@ class BrandController extends Controller
     {
         $data['menu'] = 2;
         $data['title'] = "Brand Kendaraan";
-        $data['brands'] = Brand::all();
+        $data['brands'] = \App\Models\Brand::all();
         $data['no'] = 1;
         return view('brand.index', $data);
     }

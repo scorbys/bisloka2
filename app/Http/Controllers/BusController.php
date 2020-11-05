@@ -19,7 +19,7 @@ class BusController extends Controller
         $buses = DB::table('buses')
                         ->join('brands', 'buses.brand_id', '=', 'brands.brand_id')
                         ->get()->toArray();
-        $data['buses'] = json_decode(json_encode($cars), true);
+        $data['buses'] = json_decode(json_encode($buses), true);
         $data['no'] = 1;
         return view('bus.index', $data);
     }

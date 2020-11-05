@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($cars as $row)
+                    @foreach($buses as $row)
                     <tr>
                         <td>{{ $no++}}</td>
                         <td>{{ $row['nama_kdr'] }}</td>
