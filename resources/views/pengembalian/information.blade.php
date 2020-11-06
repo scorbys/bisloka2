@@ -91,7 +91,7 @@
             	</table>
             </div>
             <!-- payment MODALS  -->
-            @include('pengembalian.form-payment')
+            @include('pengembalian.form-pembayaran')
         </form>
     </div>	
 </div>
