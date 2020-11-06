@@ -11,7 +11,7 @@
     @endif
 
 <!-- Modal -->
-@include('booking.form-pelanggan')
+@include('pemesanan.form-pelanggan')
 
     <div class="card card-secondary card-outline">
         <div class="card-header">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <p>Nama/ID Pelanggan</p>
-                            <input type="text" class="form-control" required id="pelanggan" value="{{ old('pelanggan_id') }}" placeholder="type something">
+                            <input type="text" class="form-control" required id="pelanggan" value="{{ old('pelanggan_id') }}" placeholder="masukkan nama/id">
                             <input type="hidden" name="pelanggan_id" id="pelanggan_id" value="{{ old('pelanggan_id') }}">
                             <div id="pelanggan-list"></div>
                         </div>

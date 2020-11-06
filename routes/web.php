@@ -37,3 +37,4 @@ Route::post('pemesanan/details', ['as' => 'pemesanan.calculate', 'uses' => 'Peme
 // Route Pengembalian
 Route::get('pengembalian', ['as' => 'pengembalian.index', 'uses' => 'PengembalianController@index' ])->middleware('auth');
 Route::get('pengembalian/information', ['as' => 'pengembalian.information', 'uses' => 'PengembalianController@information'])->middleware('auth');
+Route::post('pengembalian/process', ['as' => 'pengembalian.process', 'uses' => 'PengembalianController@process'])->middleware('auth');

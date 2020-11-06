@@ -16,7 +16,7 @@ class BrandController extends Controller
     {
         $data['menu'] = 2;
         $data['title'] = "Brand Kendaraan";
-        $data['brands'] = \App\Models\Brand::all();
+        $data['brands'] = Brand::all();
         $data['no'] = 1;
         return view('brand.index', $data);
     }

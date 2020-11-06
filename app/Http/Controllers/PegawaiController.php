@@ -16,7 +16,7 @@ class PegawaiController extends Controller
     {
         $data['title'] = "Pegawai";
         $data['menu'] = 3;
-        $data['Pegawai'] = Pegawai::all();
+        $data['pegawais'] = Pegawai::all();
         $data['no'] = 1;
         return view('pegawai.index', $data);
     }
@@ -83,7 +83,7 @@ class PegawaiController extends Controller
     {
         $data['title'] = "Edit Data Pegawai";
         $data['menu'] = 3;
-        $data['pegawai'] = Pegawai::find($id);
+        $data['pegawais'] = Pegawai::find($id);
         return view('pegawai.edit', $data);
     }
 

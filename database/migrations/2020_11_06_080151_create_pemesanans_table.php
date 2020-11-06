@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePemesananTable extends Migration
+class CreatePemesanansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePemesananTable extends Migration
      */
     public function up()
     {
-        Schema::create('pemesanan', function (Blueprint $table) {
+        Schema::create('pemesanans', function (Blueprint $table) {
             $table->bigIncrements('bkg_id');
             $table->string('kode_bkg');
             $table->date('tgl_psn');
@@ -37,6 +37,6 @@ class CreatePemesananTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemesanan');
+        Schema::dropIfExists('pemesanans');
     }
 }

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models;
+use App\Models\Bus;
+use App\Models\Pelanggan;
+use App\Models\Pengambilan;
+use App\Models\Pemesanan;
+use DateTime;
 
 class PemesananController extends Controller
 {
@@ -66,7 +70,7 @@ class PemesananController extends Controller
     public function calculate(Request $request)
     {
         $validate = $request->validate([
-            'kode_bkg' => 'required|unique:bookings',
+            'kode_bkg' => 'required|unique:pemesanans',
             'tgl_psn' => 'required',
             'durasi' => 'required',
         ]);
@@ -102,7 +106,7 @@ class PemesananController extends Controller
     public function process(Request $request){
         //validate 
         $validate = $request->validate([
-            'kode_bkg' => 'required|unique:pemesanan',
+            'kode_bkg' => 'required|unique:pemesanans',
             'tgl_psn' => 'required',
             'durasi' => 'required',
             'pelanggan_id' => 'required|integer',
@@ -115,7 +119,7 @@ class PemesananController extends Controller
         ]);
 
         // insert table pemesanan
-        $insert_booking = Booking::create([
+        $insert_pemesanan = Pemesanan::create([
             'kode_bkg' => $request->kode_bkg,
             'tgl_psn' => $request->tgl_psn,
             'durasi' => $request->durasi,

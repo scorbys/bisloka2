@@ -20,7 +20,7 @@ class CreatePelanggansTable extends Migration
             $table->date('ttl_plg');
             $table->string('nmrhp_plg', 20);
             $table->string('alamat_plg');
-            $table->enum('jenkel_plg', ['Laki', 'Perempuan']);
+            $table->enum('jenkel_plg', ['laki', 'perempuan']);
             $table->timestamps();
         });
     }

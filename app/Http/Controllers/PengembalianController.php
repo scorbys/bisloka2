@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Bus;
+use App\Models\Pelanggan;
+use App\Models\Pengambilan;
+use App\Models\Pemesanan;
 
 class PengembalianController extends Controller
 {
@@ -15,8 +19,8 @@ class PengembalianController extends Controller
     {
         $data['menu'] = 6;
     	$data['title'] = 'Pengembalian';
-        $data['pengembalian'] = Pemesanan::join('pelanggans', 'pelanggans.pelanggan_id', '=', 'pemesanan.pelanggan_id')
-                ->join('buses', 'buses.bus_id', '=', 'pemesanan.bus_id')->where('status', 'process')->get();
+        $data['data_bkg'] = Pemesanan::join('pelanggans', 'pelanggans.pelanggan_id', '=', 'pemesanans.pelanggan_id')
+                ->join('buses', 'buses.bus_id', '=', 'pemesanans.bus_id')->where('status', 'process')->get();
     	$data['no'] = 1;
     	return view('pengembalian.index', $data);
     }

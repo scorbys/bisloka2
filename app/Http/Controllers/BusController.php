@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models;
+use App\Models\Bus;
+use App\Models\Brand;
 use DB;
 
 class BusController extends Controller
