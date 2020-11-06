@@ -44,7 +44,7 @@ class PelangganController extends Controller
         $validate = $request->validate([
             'nama_plg' => 'required|string|max:150',
             'nik' => 'required|integer|unique:pelanggans',
-            'tgl_plg' => 'required',
+            'ttl_plg' => 'required',
             'nmrhp_plg' => 'required|max:15',
             'jenkel_plg' => 'required',
         ]);
