@@ -14,7 +14,7 @@
             <h3 class="card-title">Form {{$title}} </h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('bus.update', ['bus_id' => $bus->bus_id]) }}" method="POST">
+            <form action="{{ route('bus.update', ['bus' => $bus->bus_id]) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="row">

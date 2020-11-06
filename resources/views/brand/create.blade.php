@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <p>Brand name</p>
+                            <p>Nama Brand</p>
                             <input type="text" class="form-control" required name="nama_brand" value="{{ old('nama_brand') }}" >
                         </div>
 

@@ -29,7 +29,7 @@
                         <td>{{ $create[0] }}</td>
                        
                         <td> 
-                            <a href="{{ route('pegawai.edit',  ['id' => $row["id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
+                            <a href="{{ route('pegawai.edit',  ['pegawai' => $row["id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
                             
                         </td>
                     </tr>

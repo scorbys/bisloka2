@@ -9,6 +9,6 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['brand_name'];
+    protected $fillable = ['nama_brand'];
     protected $primaryKey = 'brand_id';
 }

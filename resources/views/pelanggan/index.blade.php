@@ -36,7 +36,7 @@
                         <td>{{ $row['jenkel_plg'] }}</td>
                         <td>{{ $create[0] }}</td>
                         <td> 
-                            <a href="{{ route('pelanggan.edit',  ['id' => $row["pelanggan_id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
+                            <a href="{{ route('pelanggan.edit',  ['pelanggan' => $row["pelanggan_id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
                             <a data-id="{{$row['pelanggan_id']}}" class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>

@@ -30,7 +30,7 @@
                         <td>{{ number_format($row['harga']) }}</td>
                         <td>{{ $row['nama_brand'] }}</td>
                         <td> 
-                            <a href="{{ route('bus.edit',  ['bus_id' => $row["bus_id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
+                            <a href="{{ route('bus.edit',  ['bus' => $row["bus_id"]]) }}" class="btn btn-sm btn-warning"><i class="fa fa-cog"></i></a>
                             <a data-id="{{$row['bus_id']}}" class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
