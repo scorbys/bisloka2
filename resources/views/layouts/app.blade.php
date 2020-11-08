@@ -80,7 +80,6 @@
                 yearRange: '1945:' + (new Date).getFullYear()
             });
         });
-
     </script>
 
     <!-- Bootstrap 4 -->
@@ -100,7 +99,6 @@
         $(function () {
             $("#myTable").DataTable();
         });
-
     </script>
 
     @stack('scripts')

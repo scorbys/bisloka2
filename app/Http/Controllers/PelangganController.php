@@ -92,7 +92,7 @@ class PelangganController extends Controller
     public function update(Request $request, $id)
     {
         $pelanggan = Pelanggan::find($id);
-        if($pelanggans->nik == $request->nik){
+        if($pelanggan->nik == $request->nik){
             $validate = $request->validate([
                 'nama_plg' => 'required|string|max:150',
                 'ttl_plg' => 'required',

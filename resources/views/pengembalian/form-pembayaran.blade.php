@@ -1,4 +1,5 @@
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,13 +22,16 @@
                     </div>
                     <div class="form-group">
                         <p>Total Harga</p>
-                        <input type="number" name="total" class="form-control" value="{{ old('total') }}" id="total">
+                        <input type="number" name="total" class="form-control"
+                            value="{{ old('total') }}" id="total">
                     </div>
                     <div class="form-group">
-                        <table> {{--  border="0" --}}
+                        <table> {{-- border="0" --}}
                             <tr>
                                 <td>Kembalian : </td>
-                                <td><div id="kembalian"></div></td>
+                                <td>
+                                    <div id="kembalian"></div>
+                                </td>
                             </tr>
                         </table>
 
@@ -35,7 +39,7 @@
 
                     <input type="submit" value="PROCESS">
                 </div>
-                
+
             </div>
         </div>
     </div>
