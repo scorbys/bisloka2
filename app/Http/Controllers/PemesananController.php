@@ -81,7 +81,7 @@ class PemesananController extends Controller
         $tgl_balik = date('Y-m-d', strtotime('+'.$durasi_order.' hari', strtotime($tgl_psn)));
 
         // total harga
-        $bus = Bus::find($request->Bus_id);
+        $bus = Bus::find($request->bus_id);
         $total_harga = $bus->harga * $durasi_order;
 
         // minimal dp (30% dari total harga)
@@ -91,12 +91,12 @@ class PemesananController extends Controller
         $data = $request->toArray();
 
         // pelanggan
-        $pelanggans = Pelanggan::find($request->pelanggan_id);
+        $pelanggan = Pelanggan::find($request->pelanggan_id);
 
         $title = 'Detail Pemesanan';
         $menu = '5';
         
-        return view('pemesanan.details', compact('tgl_balik', 'data', 'total_harga', 'bus', 'dp', 'title', 'menu', 'client'));
+        return view('pemesanan.details', compact('tgl_balik', 'data', 'total_harga', 'bus', 'dp', 'title', 'menu', 'pelanggan'));
     }
 
     /**

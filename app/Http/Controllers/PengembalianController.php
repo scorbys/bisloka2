@@ -54,7 +54,7 @@ class PengembalianController extends Controller
     		$selisih = $balik_shr->diff($balik_skrng);
             for($i=1; $i<=$selisih->hari; $i++)
             {
-    			$kondisi = ($table_bkg->price * $i.'0')/100;
+    			$kondisi = ($table_bkg->harga * $i.'0')/100;
     		}
     		$data['tepat'] = $kondisi;
     		$data['telat'] = $selisih->hari;

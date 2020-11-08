@@ -22,7 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('bus', 'BusController')->middleware('auth');
+Route::resource('bus', 'BusController')->parameters(['bus' => 'bus'])->middleware('auth');
 Route::resource('brand', 'BrandController')->middleware('auth');
 Route::resource('pegawai', 'PegawaiController')->middleware('auth');
 Route::resource('pelanggan', 'PelangganController')->middleware('auth');
