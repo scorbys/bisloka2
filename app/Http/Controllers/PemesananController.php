@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Bus;
 use App\Models\Pelanggan;
 use App\Models\Pengambilan;
 use App\Models\Pemesanan;
-use DateTime;
 
 class PemesananController extends Controller
 {
@@ -32,13 +33,13 @@ class PemesananController extends Controller
     {
         $get = $_GET['data'];
         $data = DB::table('pelanggans')->where('nama_plg', 'like', "%$get%")->get();
-		$output = "<ul class='ul-pelanggan'>";
+		$output = "<ul class='ul-client'>";
 		if(count($data) != 0){
 			foreach($data as $row) {
-				$output .= "<li class='li-pelanggan'>".$row->pelanggan_id. " - ". $row->nama_plg ."</li>";
+				$output .= "<li class='li-client'>".$row->pelanggan_id. " - ". $row->nama_plg ."</li>";
 			}
 		} else {
-			$output .= '<li class="li-pelanggan-null">Tidak terdaftar? <a href="" data-toggle="modal" data-target="#pelangganModal">Tambahkan disini</a></li>';
+			$output .= '<li class="li-client-null">Tidak terdaftar? <a href="" data-toggle="modal" data-target="#pelangganModal">Tambahkan disini</a></li>';
 		}
 		echo $output;
     }
@@ -78,7 +79,7 @@ class PemesananController extends Controller
         // tanggal pengembalian
         $durasi_order = $request->durasi;
         $tgl_psn = $request->tgl_psn;
-        $tgl_balik = date('Y-m-d', strtotime('+'.$durasi_order.' hari', strtotime($tgl_psn)));
+        $tgl_balik = date('Y-m-d', strtotime('+'.$durasi_order.' days', strtotime($tgl_psn)));
 
         // total harga
         $bus = Bus::find($request->bus_id);

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 use App\Models\Bus;
 use App\Models\Pelanggan;
-use App\Models\Pengambilan;
+use App\Models\Pengembalian;
 use App\Models\Pemesanan;
+use DateTime;
 
 class PengembalianController extends Controller
 {
@@ -52,22 +55,22 @@ class PengembalianController extends Controller
     		$balik_shr = new DateTime($table_bkg->tgl_balik_shr);
     		$balik_skrng = new DateTime(date('Y-m-d'));
     		$selisih = $balik_shr->diff($balik_skrng);
-            for($i=1; $i<=$selisih->hari; $i++)
+            for($i=1; $i<=$selisih->days; $i++)
             {
     			$kondisi = ($table_bkg->harga * $i.'0')/100;
     		}
-    		$data['tepat'] = $kondisi;
-    		$data['telat'] = $selisih->hari;
+    		$data['tepat'] = $kondisi;  
+    		$data['telat'] = $selisih->days;
     	} else {
     		$data['tepat'] = null;
     		$data['telat'] = null;
     	}
 
     	$data['pembayaran'] = Pengembalian::where('kode_bkg',$kode_bkg)->get()->first();
-    	$data['data'] = $kode_bkg;
-    	$data['pelanggan'] = Pelanggan::find($kode_bkg->pelanggan_id);
-    	$data['bus'] = Bus::find($kode_bkg->bus_id);
-    	$data['ttl'] = $kode_bkg->harga + $data['kondisi'] - $data['pembayaran']->total;
+    	$data['data'] = $table_bkg;
+    	$data['pelanggan'] = Pelanggan::find($table_bkg->pelanggan_id);
+    	$data['bus'] = Bus::find($table_bkg->bus_id);
+    	$data['ttl'] = $table_bkg->harga + $data['tepat'] - $data['pembayaran']->total;
     	$data['title'] = 'Proses Pengembalian';
     	$data['menu'] = 6;
 
@@ -99,7 +102,7 @@ class PengembalianController extends Controller
             ->update(
                 [
                     'tgl_balik' => date('Y-m-d'),
-                    'kondisi' => $request->kondisi,
+                    'tepat' => $request->kondisi,
                     'status' => 'dibayar'
                     ]
                 );
@@ -108,7 +111,7 @@ class PengembalianController extends Controller
         Pengembalian::create
         (
             [
-    		'total' => $request->amount,
+    		'total' => $request->total,
     		'tanggal' => date('Y-m-d'),
     		'pelanggan_id' => $request->pelanggan_id,
     		'pegawai_id' => Auth::user()->id,

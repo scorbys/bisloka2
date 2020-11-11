@@ -21,7 +21,7 @@ class CreatePemesanansTable extends Migration
             $table->date('tgl_balik_shr');
             $table->date('tgl_balik')->nullable();
             $table->integer('harga');
-            $table->enum('status', ['terbayar', 'pending']);
+            $table->enum('status', ['dibayar', 'process']);
             $table->string('kondisi')->nullable();
             $table->integer('pegawai_id');
             $table->integer('bus_id');
