@@ -59,10 +59,10 @@ class PengembalianController extends Controller
             {
     			$kondisi = ($table_bkg->harga * $i.'0')/100;
     		}
-    		$data['tepat'] = $kondisi;  
+    		$data['kondisi'] = $kondisi;  
     		$data['telat'] = $selisih->days;
     	} else {
-    		$data['tepat'] = null;
+    		$data['kondisi'] = null;
     		$data['telat'] = null;
     	}
 
@@ -70,7 +70,7 @@ class PengembalianController extends Controller
     	$data['data'] = $table_bkg;
     	$data['pelanggan'] = Pelanggan::find($table_bkg->pelanggan_id);
     	$data['bus'] = Bus::find($table_bkg->bus_id);
-    	$data['ttl'] = $table_bkg->harga + $data['tepat'] - $data['pembayaran']->total;
+    	$data['ttl'] = $table_bkg->harga + $data['kondisi'] - $data['pembayaran']->total;
     	$data['title'] = 'Proses Pengembalian';
     	$data['menu'] = 6;
 
@@ -102,7 +102,7 @@ class PengembalianController extends Controller
             ->update(
                 [
                     'tgl_balik' => date('Y-m-d'),
-                    'tepat' => $request->kondisi,
+                    'kondisi' => $request->kondisi,
                     'status' => 'dibayar'
                     ]
                 );
@@ -112,7 +112,7 @@ class PengembalianController extends Controller
         (
             [
     		'total' => $request->total,
-    		'tanggal' => date('Y-m-d'),
+    		'tgl' => date('Y-m-d'),
     		'pelanggan_id' => $request->pelanggan_id,
     		'pegawai_id' => Auth::user()->id,
             'kode_bkg' => $request->kode_bkg,

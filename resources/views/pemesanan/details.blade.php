@@ -28,13 +28,13 @@
                         </tr>
                     </thead>
                     <tr>
-                        <th>Nama Kendaraan</th>
+                        <th>Nama Bus </th>
                         <td>: </td>
                         <td>{{ $bus->nama_kdr }}</td>
                         <input type="hidden" name="bus_id" value="{{ $bus->bus_id }}" required>
                     </tr>
                     <tr>
-                        <th>Kode Pemesanan</th>
+                        <th>Kode Booking </th>
                         <td>: </td>
                         <td>{{ $data['kode_bkg'] }}</td>
                         <input type="hidden" name="kode_bkg" value="{{ $data['kode_bkg'] }}"
@@ -48,7 +48,7 @@
                             required>
                     </tr>
                     <tr>
-                        <th>Durasi</th>
+                        <th>Durasi Order</th>
                         <td> : </td>
                         <td>{{ $data['durasi'] }} Hari</td>
                         <input type="hidden" name="durasi" value="{{ $data['durasi'] }}"
@@ -72,7 +72,7 @@
                         <input type="hidden" name="harga" value="{{ $total_harga }}" required>
                     </tr>
                     <tr>
-                        <th>Dp Minimal</th>
+                        <th>Dp Minimum</th>
                         <td> : </td>
                         <td>Rp. {{ number_format($dp) }}</td>
                         <input type="hidden" name="pegawai_id" value="{{ Auth::user()->id }}" required>

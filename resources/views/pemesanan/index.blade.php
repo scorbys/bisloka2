@@ -100,14 +100,14 @@
         $(document).on('click', '.li-client', function () {
             $('#pelanggan').val($(this).text());
             var pelanggan_id = $('input[id="pelanggan"]').val();
-            newpelanggan = pelanggan_id.split(" ");
-            $('#pelanggan_id').val(newpelanggan[0]);
+            newPelanggan = pelanggan_id.split(" ");
+            $('#pelanggan_id').val(newPelanggan[0]);
             $('#pelanggan-list').fadeOut();
         });
         $(document).on('click', '.li-client-null', function () {
             $('#pelanggan').val("");
 
-            $('#pelanggan_id').val(newpelanggan[0]);
+            $('#pelanggan_id').val(newPelanggan[0]);
             $('#pelanggan-list').fadeOut();
         });
 
