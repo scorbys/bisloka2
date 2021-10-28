@@ -10,8 +10,6 @@ Bisloka adalah aplikasi pemesanan kendaraan
 - Jalankan perintah cmd "php artisan key:generate"
 - Lalu jalankan perintah cmd "php artisan migrate", untuk membuat table2 pada db tersebut
 - Setelah itu "php artisan serve"
-- untuk user demo saya buatkan form untuk register dengan cara menambahkan /register di url
-- setelah register silahkan login menggunakan akun anda dan menjalankan sistemny
 
 ### Tips
 - Eror saat melakukan "php artisan migrate" yang disebabkan versi MySQL dibawah 5.7.7
