@@ -1,3 +1,5 @@
+Bisloka adalah aplikasi pemesanan kendaraan
+
 ### Cara Install
 - Clone or download project di repository ini
 - Ekstrak dan buka folder project tersbut
@@ -10,3 +12,7 @@
 - Setelah itu "php artisan serve"
 - untuk user demo saya buatkan form untuk register dengan cara menambahkan /register di url
 - setelah register silahkan login menggunakan akun anda dan menjalankan sistemny
+
+### Tips
+- Eror saat melakukan "php artisan migrate" yang disebabkan versi MySQL dibawah 5.7.7
+  https://stackoverflow.com/questions/42244541/laravel-migration-error-syntax-error-or-access-violation-1071-specified-key-wa
