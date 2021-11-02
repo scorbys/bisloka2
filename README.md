@@ -1,4 +1,4 @@
-Bisloka adalah aplikasi pemesanan kendaraan
+### Bisloka adalah aplikasi pemesanan kendaraan
 
 ### Cara Install
 - Clone or download project di repository ini
@@ -8,10 +8,8 @@ Bisloka adalah aplikasi pemesanan kendaraan
 - Copy env.example, lalu ubah menjadi .env saja
 - Sesuaikan konfigurasi anda, untuk DB_DATABASE gunakan db yg anda buat tadi
 - Jalankan perintah cmd "php artisan key:generate"
-- Lalu jalankan perintah cmd "php artisan migrate", untuk membuat table2 pada db tersebut
+- Lalu jalankan perintah cmd "php artisan migrate", untuk membuat table pada db tersebut
 - Setelah itu "php artisan serve"
-- untuk user demo saya buatkan form untuk register dengan cara menambahkan /register di url
-- setelah register silahkan login menggunakan akun anda dan menjalankan sistemny
 
 ### Tips
 - Eror saat melakukan "php artisan migrate" yang disebabkan versi MySQL dibawah 5.7.7
